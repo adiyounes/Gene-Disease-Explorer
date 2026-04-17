@@ -10,11 +10,22 @@ function App(){
 
   const [selectedGene, setSelectedGene] = useState(null)
 
+  const [savedGenes, setSavedGenes] = useState([])
+
   function handleKeyDown(e) {
-  if (e.key === 'Enter') handleSearch()
+    if (e.key === 'Enter') handleSearch()
   } 
 
+  function handleSave(gene) {
+    setSavedGenes(prev => [...prev, gene])
+  }
+
+  function handleRemove(uid) {
+    setSavedGenes(savedGenes => savedGenes.filter(gene=>gene.uid !==uid))
+  }
+
   async function handleSearch() {
+    
     setLoading(true)
     setError(null)
     setGenes([])
@@ -63,7 +74,11 @@ function App(){
        {error && <p>{error}</p>}
        {
         selectedGene && (
-          <DetailPanel gene={selectedGene}/>
+          <DetailPanel gene={selectedGene}
+            savedGenes={savedGenes}
+            onSave={handleSave}
+            onRemove={handleRemove}
+          />
         )
        }
        {genes.map(gene => (

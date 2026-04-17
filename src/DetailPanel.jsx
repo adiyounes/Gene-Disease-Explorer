@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 
-function DetailPanel({gene}){
+function DetailPanel({gene, savedGenes, onSave, onRemove}){
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(false)
+
+    const isSaved = savedGenes.some(g=>g.uid===gene.uid)
 
     useEffect(()=>{
         if (!gene) return
@@ -22,13 +24,8 @@ function DetailPanel({gene}){
                     return
                 }
 
-                const summaryRes = await fetch(
-                    `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=${ids.join(',')}&retmode=json`
-                )
-                const summaryData = await summaryRes.json()
-                const articles = ids.map(id => summaryData.result[id])
+                setArticles(ids)
                 
-                setArticles(articles)
             }catch (err) {
                 console.error(err)
             }finally {
@@ -41,14 +38,16 @@ function DetailPanel({gene}){
     return (
         <div>
             <h2>{gene.name}</h2>
+            <button onClick={() => isSaved ? onRemove(gene.uid) : onSave(gene)}>
+                {isSaved ? "Remove" : "Save"}
+            </button>
             <p>{gene.summary}</p>
             <h3>Related Research</h3>
             {loading && <p>Loading articles</p>}
-            {articles.map(article =>
-                <div key={article.uid}>
-                    <p>{article.title}</p>
-                    <a href={`https://pubmed.ncbi.nlm.nih.gov/${article.uid}/`} target="_blank" rel="noopener noreferrer">
-                        View on PubMed --
+            {articles.map(id =>
+                <div key={id}>
+                    <a href={`https://pubmed.ncbi.nlm.nih.gov/${id}/`} target="_blank" rel="noopener noreferrer">
+                        PubMed article {id} --
                     </a>
                 </div>
             )}
