@@ -31,7 +31,7 @@ function App(){
     setGenes([])
     try{
       const res = await fetch(
-        `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=${encodeURIComponent(query)}[Gene Name]&retmax=8&retmode=json`)
+        `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gene&term=${encodeURIComponent(query)}[Gene Name]&retmax=30&retmode=json`)
       const data = await res.json()
       const ids = data.esearchresult.idlist
       
@@ -46,7 +46,9 @@ function App(){
   
       const summaryData = await summaryRes.json()
       
-      const genes = ids.map(id => summaryData.result[id])
+      const genes = ids
+        .map(id => summaryData.result[id])
+        .filter(gene => gene.summary && gene.summary.length > 0) 
       setGenes(genes)
       //Object.values(summaryData.result).forEach(value => {
       //  console.log(value.summary)
@@ -59,20 +61,24 @@ function App(){
 
     }
   return (
-    <div>
-      <input type="text"
-      value={query}
-      onChange={(e) => setQuery(e.target.value)}
-      placeholder="Enter a gene name..."
-      onKeyDown={handleKeyDown}
-       />
-       <button
-       onClick={handleSearch}>
-       Search
-       </button>
-       {loading && <p>Loading...</p>}
-       {error && <p>{error}</p>}
-       {
+    <div className="app">
+      <h1>Gene Scope</h1>
+      <p className="subtitle">Search genes and explore disease assiociations</p>
+      <div className="search-row">
+        <input type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Enter a gene name..."
+          onKeyDown={handleKeyDown}
+        />
+        <button
+          onClick={handleSearch}>
+          Search
+        </button>
+      </div>
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {
         selectedGene && (
           <DetailPanel gene={selectedGene}
             savedGenes={savedGenes}
@@ -81,7 +87,7 @@ function App(){
           />
         )
        }
-       {genes.map(gene => (
+      {genes.map(gene => (
         <GeneCard
           key={gene.uid}
           name={gene.name}

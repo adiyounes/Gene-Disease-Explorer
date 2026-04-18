@@ -1,8 +1,8 @@
 function GeneCard({name, description, summary, onClick}) {
     return (
-        <div onClick={onClick}>
+        <div className="gene-card" onClick={onClick}>
             <h2>{name}</h2>
-            <p>{description}</p>
+            <p className="org">{description}</p>
             <p>{summary}</p>
         </div>
     )

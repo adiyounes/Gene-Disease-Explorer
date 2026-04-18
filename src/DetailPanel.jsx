@@ -36,9 +36,9 @@ function DetailPanel({gene, savedGenes, onSave, onRemove}){
     }, [gene?.uid])
 
     return (
-        <div>
+        <div className="detail-panel">
             <h2>{gene.name}</h2>
-            <button onClick={() => isSaved ? onRemove(gene.uid) : onSave(gene)}>
+            <button className={`save-btn ${isSaved ? 'saved' : ''}`} onClick={() => isSaved ? onRemove(gene.uid) : onSave(gene)}>
                 {isSaved ? "Remove" : "Save"}
             </button>
             <p>{gene.summary}</p>
@@ -46,7 +46,7 @@ function DetailPanel({gene, savedGenes, onSave, onRemove}){
             {loading && <p>Loading articles</p>}
             {articles.map(id =>
                 <div key={id}>
-                    <a href={`https://pubmed.ncbi.nlm.nih.gov/${id}/`} target="_blank" rel="noopener noreferrer">
+                    <a key={id} className="article-link" href={`https://pubmed.ncbi.nlm.nih.gov/${id}/`} target="_blank" rel="noopener noreferrer">
                         PubMed article {id} --
                     </a>
                 </div>

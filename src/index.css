@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f5f5;
+  color: #1a1a1a;
+}
+
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.search-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.search-row input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+}
+
+.search-row input:focus {
+  border-color: #888;
+}
+
+.search-row button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.search-row button:hover {
+  background: #333;
+}
+
+.gene-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.gene-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.gene-card:hover {
+  border-color: #aaa;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.gene-card h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.gene-card .org {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.gene-card p {
+  font-size: 12px;
+  color: #555;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.detail-panel {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-panel h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.detail-panel p {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.detail-panel h3 {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.save-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  background: white;
+  margin-bottom: 1rem;
+}
+
+.save-btn:hover {
+  background: #f5f5f5;
+}
+
+.save-btn.saved {
+  border-color: #2e7d32;
+  color: #2e7d32;
+}
+
+.article-link {
+  display: block;
+  font-size: 13px;
+  color: #1a6ef5;
+  text-decoration: none;
+  padding: 6px 0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.article-link:hover {
+  text-decoration: underline;
+}
+
+.status {
+  font-size: 13px;
+  color: #888;
+  padding: 8px 0;
+}
+
+.status.error {
+  color: #c0392b;
+}
