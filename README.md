@@ -1,16 +1,49 @@
-# React + Vite
+# GeneScope
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React app for gene research and disease assiociations using the NCBI data base
 
-Currently, two official plugins are available:
+## What it does
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Searches for a gene in the ncbi data base
+- returns summaries of the gene searched
+- it shows direct links to the aticles of related research
 
-## React Compiler
+## Tech used
+|Tech|Purpose|
+|-----|------|
+|React|UI library for building component based interfaces|
+|Vite|Development environment and build tool|
+|NCBI, REST API|free public api for accessing biomedical database|
+|CSS|Custom styling|
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Concepts practiced
 
-## Expanding the ESLint configuration
+- useState, managing multiple pieces of UI state
+- useEffect, fetching data when selected gene changes
+- async/await and try/catch/finally,handling API requests
+- Array methods like map(), filter(), some()
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## How to run it
+
+1. clone the repository
+```
+    git clone git@github.com:adiyounes/Gene-Disease-Explorer.git
+```
+2. Install dependencies
+```
+    cd gene-explorer
+    npm install
+```
+3. launch the development server
+```
+    npm run dev
+```
+4. Open http://localhost:5173 on your browser
+
+## API
+
+This app uses the NCBI E-utilities API,a free public API that gives access to the National Center for Biotechnology Information databases.
+
+two end points used:
+- esearch, takes a gene name and returns matching gene IDs
+- esummary, takes gene IDs and returns full gene data including name, description and summary

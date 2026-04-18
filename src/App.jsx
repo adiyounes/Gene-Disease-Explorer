@@ -25,7 +25,8 @@ function App(){
   }
 
   async function handleSearch() {
-    
+    if (!query.trim()) return
+    setSelectedGene(null)
     setLoading(true)
     setError(null)
     setGenes([])
@@ -50,9 +51,6 @@ function App(){
         .map(id => summaryData.result[id])
         .filter(gene => gene.summary && gene.summary.length > 0) 
       setGenes(genes)
-      //Object.values(summaryData.result).forEach(value => {
-      //  console.log(value.summary)
-      //});
     } catch(err) {
       setError("Something went wrong, please try again")
     } finally {
@@ -72,11 +70,12 @@ function App(){
           onKeyDown={handleKeyDown}
         />
         <button
-          onClick={handleSearch}>
-          Search
+          onClick={handleSearch}
+          disabled={loading || !query.trim()}>
+          {loading ? "Searching..." : "Search"}
         </button>
       </div>
-      {loading && <p>Loading...</p>}
+      {loading && <p className="status">Searching...</p>}
       {error && <p>{error}</p>}
       {
         selectedGene && (
