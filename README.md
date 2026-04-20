@@ -16,6 +16,10 @@ A React app for gene research and disease assiociations using the NCBI data base
 |NCBI, REST API|free public api for accessing biomedical database|
 |CSS|Custom styling|
 
+##Live demo
+
+https://genescope-ten.vercel.app
+
 ## Concepts practiced
 
 - useState, managing multiple pieces of UI state
