@@ -2,6 +2,10 @@
 
 A React app for gene research and disease assiociations using the NCBI data base
 
+## Live demo
+
+https://genescope-ten.vercel.app
+
 ## What it does
 
 - Searches for a gene in the ncbi data base
@@ -16,9 +20,6 @@ A React app for gene research and disease assiociations using the NCBI data base
 |NCBI, REST API|free public api for accessing biomedical database|
 |CSS|Custom styling|
 
-##Live demo
-
-https://genescope-ten.vercel.app
 
 ## Concepts practiced
 
